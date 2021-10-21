@@ -35,3 +35,7 @@ public class Kitty {
   }
 
 }
+// What changes when you run this? What does this suggest about toString?
+// Before the changes, printing a kitty printed out a address. After adding 
+// toString accessor, it  prints out the "The amazing " +  its name. This suggests
+// that toString acts as a print statement for any kitty being printed. 
