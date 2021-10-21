@@ -14,12 +14,15 @@ public class Kitty {
       name = "Mittens";
   }
 
-  // Two accessor methods
+  // Three accessor methods
   public String getName() {
       return name;
   }
   public int getAge() {
       return age;
+  }
+  public String toString() {
+      return "The amazing " + name;
   }
 
   // Two mutator methods
