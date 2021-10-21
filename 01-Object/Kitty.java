@@ -1,21 +1,20 @@
 public class Kitty {
 
-  //Three fields (instance variables):
+  //Two fields (instance variables):
   private int age;
   private String name;
 
-  //One constructor:
+  //Two constructor:
+  public Kitty(String nameStated, int ageStated) {
+      name = nameStated;
+      age = ageStated;
+  }
   public Kitty() {
       age = 2;
       name = "Mittens";
   }
-  public Kitty(int ageStated, String nameStated) {
-      age = ageStated;
-      name = nameStated;
-  }
 
-
-  // three accessor methods
+  // Two accessor methods
   public String getName() {
       return name;
   }
@@ -23,8 +22,8 @@ public class Kitty {
       return age;
   }
 
-  // four mutator methods
-  public void setGear(String addName) {
+  // Two mutator methods
+  public void changeName(String addName) {
       name = addName;
   }
 
