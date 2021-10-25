@@ -14,10 +14,10 @@ public class Point{
   public double getY(){
     return y;
   }
-  public double distanceTo(Point b) {
-    return Math.sqrt((b.x-x)*(b.x-x)+(b.y - y)*(b.y - y));
-  }
   public static double distance (Point a, Point b) {
     return Math.sqrt((b.x-a.x)*(b.x-a.x)+(b.y - a.y)*(b.y - a.y));
+  }
+  public double distanceTo(Point b) {
+    return Math.sqrt((b.x-x)*(b.x-x)+(b.y - y)*(b.y - y));
   }
 }
