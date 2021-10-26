@@ -1,4 +1,23 @@
 public class Triangle {
+  private Point v1, v2, v3;
+
+  public double getPerimeter() {
+
+  }
+
+  public Point getVertex(int x) {
+    if (x == 1) {
+      return v1;
+    }
+  }
+
+  public void setVertex(int,Point) {
+
+  }
+
+  public String toString() {
+
+  }
 
   /*Return true when the Points of the triangles are all equal() to the corresponding points of the other Triangle.
   */
