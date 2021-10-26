@@ -27,6 +27,15 @@ public class Point{
   *To avoid issues: If one is 0.0, the other must be exactly 0.0.
   */
   public boolean equals(Point other){
-    if (getx())
+    boolean ans;
+    if (other.x == 0.0 || other.y == 0.0 || x == 0.0 || y == 0.0) {
+      ans = false;
+    }
+    if (((other.x-x)/x*100) < 0.001 && ((other.x-x)/x*100) < 0.001) {
+      ans = true;
+    } else {
+      ans = false;
+    }
+    return ans;
   }
 }
