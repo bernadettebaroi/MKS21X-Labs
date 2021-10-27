@@ -37,14 +37,22 @@ public class Triangle {
   /*Return true when the Points of the triangles are all equal() to the corresponding points of the other Triangle.
   */
   public boolean equals(Triangle other){
-    if ()
+    boolean ans = false;
+    if (v1.equals(other.v1) || v2.equals(other.v2) || v3.equals(other.v3)) {
+      ans = true;
+    }
+    return ans;
   }
 
+  public static boolean closeEnough(double a, double b){
+  //How can you determine if two values are close enough to eachother?
+  }
 
   /*Return "scalene", "isoscelese", or "equilateral"
   *Make sure to use closeEnough() to determine if two sides are equal because of rounding!
   */
   public String classify(){
+
   }
 
 
