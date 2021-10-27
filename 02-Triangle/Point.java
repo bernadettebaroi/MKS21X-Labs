@@ -31,7 +31,7 @@ public class Point{
     if (other.x == 0.0 || other.y == 0.0 || x == 0.0 || y == 0.0) {
       ans = false;
     }
-    if (((other.x-x)/x*100) < 0.001 && ((other.x-x)/x*100) < 0.001) {
+    if (((other.x-x)/x*100) < 0.001 && ((other.y-y)/y*100) < 0.001) {
       ans = true;
     } else {
       ans = false;
