@@ -1,20 +1,32 @@
 public class Triangle {
   private Point v1, v2, v3;
 
+  public Triangle (Point a, Point b, Point c) {
+    v1 = a;
+    v2 = b;
+    v3 = c;
+  }
+
+  public Triangle(double a, double b, double c, double d, double e, double f) {
+    v1 = new Point(a,b);
+    v2 = new Point(c,d);
+    v3 = new Point(e,f);
+  }
+
   public double getPerimeter() {
-    v1.distanceTo(v2) + v2.distanceTo(v3) + v3.distanceTo(v1);
+    return v1.distanceTo(v2) + v2.distanceTo(v3) + v3.distanceTo(v1);
   }
 
   public Point getVertex(int x) {
+    Point ans = v1;
     if (x == 1) {
-      return v1;
+      ans = v1;
+    } else if (x == 2) {
+      ans = v2;
+    } else if (x == 3) {
+      ans = v3;
     }
-    if (x == 2) {
-      return v2;
-    }
-    if (x == 3) {
-      return v3;
-    }
+  return ans;
   }
 
   public void setVertex(int x, Point b) {
@@ -30,8 +42,11 @@ public class Triangle {
   }
 
   public String toString() {
-    String ans = "{(";
-    ans += v1.getX() + "," + v1.getY() + "), (" + v2.getX() + "," + v2.getY() + "), (" + v3.getX() + "," + v3.getY() + "}"
+    String ans = "{";
+    ans += "(" + v1.getX() + "," + v1.getY() + "), ";
+    ans += "(" + v2.getX() + "," + v2.getY() + "), ";
+    ans += "(" + v3.getX() + "," + v3.getY() + ")}";
+    return ans;
   }
 
   /*Return true when the Points of the triangles are all equal() to the corresponding points of the other Triangle.
@@ -45,14 +60,27 @@ public class Triangle {
   }
 
   public static boolean closeEnough(double a, double b){
-  //How can you determine if two values are close enough to eachother?
+    //How can you determine if two values are close enough to eachother?
+    if (Math.abs((a - b) / b) * 100 < 0.001 ) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   /*Return "scalene", "isoscelese", or "equilateral"
   *Make sure to use closeEnough() to determine if two sides are equal because of rounding!
   */
   public String classify(){
-
+    String ans = "";
+    if (v1.distanceTo(v2) == v2.distanceTo(v3) && v3.distanceTo(v1) == v1.distanceTo(v2)) {
+      ans = "equilateral";
+    } else if (v1.distanceTo(v2) == v2.distanceTo(v3) || v2.distanceTo(v3) == v3.distanceTo(v1)) {
+      ans = "isoscelese";
+    } else {
+      ans = "scalene";
+    }
+    return ans;
   }
 
 
@@ -61,6 +89,11 @@ public class Triangle {
   *where s= perimeter/2 , and a,b,c are the side lengths.
   */
   public double area(){
+    double s = getPerimeter()/2;
+    double a = v1.distanceTo(v2);
+    double b = v2.distanceTo(v3);
+    double c = v3.distanceTo(v1);
+    double Area = Math.sqrt ( s * (s-a)* (s-b) * (s-c));
+    return Area;
   }
-
 }
