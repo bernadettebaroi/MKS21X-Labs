@@ -1,5 +1,10 @@
 public class Triangle {
+
+//fields (instance variables):
+
   private Point v1, v2, v3;
+
+//constructors:
 
   public Triangle (Point a, Point b, Point c) {
     v1 = a;
@@ -13,10 +18,15 @@ public class Triangle {
     v3 = new Point(e,f);
   }
 
+//accessor methods
+
+  // will return a double that is the perimeter of the Triangle
   public double getPerimeter() {
     return v1.distanceTo(v2) + v2.distanceTo(v3) + v3.distanceTo(v1);
   }
 
+
+ // This method takes an int that is: 1,2,3 and returns the corresponding vertex( v1/v2/v3 )
   public Point getVertex(int x) {
     Point ans = v1;
     if (x == 1) {
@@ -29,6 +39,10 @@ public class Triangle {
   return ans;
   }
 
+//mutator method
+
+  /* This method takes an int that is: 1,2,3 and a Point object. It replaces the corresponding
+  vertex( v1/v2/v3 ) with the specified Point. We won't worry about out of bounds values for now.*/
   public void setVertex(int x, Point b) {
     if (x == 1) {
       v1 = b;
@@ -41,6 +55,9 @@ public class Triangle {
     }
   }
 
+// accessors
+
+  // will return a string in the format { v1, v2, v3} where you replace v1/2/3 with the toString of the Point object
   public String toString() {
     String ans = "{";
     ans += "(" + v1.getX() + "," + v1.getY() + "), ";
@@ -49,8 +66,8 @@ public class Triangle {
     return ans;
   }
 
-  /*Return true when the Points of the triangles are all equal() to the corresponding points of the other Triangle.
-  */
+
+  // Return true when the Points of the triangles are all equal() to the corresponding points of the other Triangle.
   public boolean equals(Triangle other){
     if (other == null) {
       return false;
@@ -62,6 +79,7 @@ public class Triangle {
     //How can you determine if two values are close enough to eachother?
     return ((a==0.0&&b==0.0)||((Math.abs(a-b)/Math.abs(b))*100<=0.001));
   }
+
 
   /*Return "scalene", "isoscelese", or "equilateral"
   *Make sure to use closeEnough() to determine if two sides are equal because of rounding!
@@ -91,4 +109,5 @@ public class Triangle {
     double Area = Math.sqrt ( s * (s-a)* (s-b) * (s-c));
     return Area;
   }
+
 }
