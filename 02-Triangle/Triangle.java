@@ -52,20 +52,15 @@ public class Triangle {
   /*Return true when the Points of the triangles are all equal() to the corresponding points of the other Triangle.
   */
   public boolean equals(Triangle other){
-    boolean ans = false;
-    if (v1.equals(other.v1) || v2.equals(other.v2) || v3.equals(other.v3)) {
-      ans = true;
+    if (other == null) {
+      return false;
     }
-    return ans;
+    return (v1.equals(other.v1) && v2.equals(other.v2) && v3.equals(other.v3));
   }
 
   public static boolean closeEnough(double a, double b){
     //How can you determine if two values are close enough to eachother?
-    if (Math.abs((a - b) / b) * 100 < 0.001 ) {
-      return true;
-    } else {
-      return false;
-    }
+    return ((a==0.0&&b==0.0)||((Math.abs(a-b)/Math.abs(b))*100<=0.001));
   }
 
   /*Return "scalene", "isoscelese", or "equilateral"
@@ -73,9 +68,9 @@ public class Triangle {
   */
   public String classify(){
     String ans = "";
-    if (v1.distanceTo(v2) == v2.distanceTo(v3) && v3.distanceTo(v1) == v1.distanceTo(v2)) {
+    if ( (closeEnough(v1.distanceTo(v2), v2.distanceTo(v2))) && (closeEnough(v2.distanceTo(v3), v1.distanceTo(v2))) ) {
       ans = "equilateral";
-    } else if (v1.distanceTo(v2) == v2.distanceTo(v3) || v2.distanceTo(v3) == v3.distanceTo(v1)) {
+    } else if ((closeEnough(v1.distanceTo(v2), v2.distanceTo(v3))) || (closeEnough(v2.distanceTo(v3), v3.distanceTo(v1))) ) {
       ans = "isoscelese";
     } else {
       ans = "scalene";

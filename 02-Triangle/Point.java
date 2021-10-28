@@ -27,24 +27,14 @@ public class Point{
   *To avoid issues: If one is 0.0, the other must be exactly 0.0.
   */
   public boolean equals(Point other){
-    boolean ans;
-    if (other.x == 0.0 || other.y == 0.0 || x == 0.0 || y == 0.0) {
-      ans = false;
+    if (other == null) {
+      return false;
     }
-    if ((Math.abs(other.x-x)/x*100) < 0.001 && (Math.abs((other.y-y)/y*100) < 0.001)) {
-      ans = true;
-    } else {
-      ans = false;
-    }
-    return ans;
+    return (closeEnough(other.x, x) && closeEnough(other.y, y));
   }
 
   public static boolean closeEnough(double a, double b){
   //How can you determine if two values are close enough to eachother?
-  if (Math.abs((a - b) / b) * 100 < 0.001 ) {
-    return true;
-    } else {
-    return false;
-    }
+  return ((a==0.0 && b==0.0)||((Math.abs(a-b)/Math.abs(b))*100<=0.001));
   }
 }
