@@ -38,6 +38,13 @@ public class RealNumber{
     return value - other.getValue();
   }
 
+  public int compareTo(RealNumber other) {
+    return (int)(value)-(int)(other.getValue());
+  }
+
+  public boolean equals(RealNumber other) {
+    return ((int)(other.getValue()) == (int)(value));
+  }
 
   public double getValue(){
     return value;
