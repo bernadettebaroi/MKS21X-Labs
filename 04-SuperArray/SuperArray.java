@@ -129,5 +129,56 @@ Return -1 when no value matches.
     return ans;
   }
 
+/*
+add the String to the target index. Values at that index and to the right of it must be
+shifted to the  right to make room. Print an Error - if the index is out of range.
+Anything index that is negative is out of range, but size() IS a valid index. Greater than size() is out of range.
+*/
+  public void add(int index, String value ) {
+    if (index < 0 || index > size) {
+      System.out.println("Error");
+    } else {
+      for (int i = size; i > index; i--){
+          data[i] = data[i-1];
+        }
+      data[index] = value;
+      }
+  }
+
+
+/*
+remove the element at the specified index. Shift all elements to the right of that index to the left to fill in the gap.
+Print an Error when the index is out of range (that is index < 0 or it is greater than or equal to size()) return null
+when an error happens, or the value that you removed when the index was valid.
+*/
+  public String remove(int index) {
+    if (index < 0 || index > size) {
+      System.out.println("Error");
+      } else {
+        data[index] = data[index + 1];
+        for (int i = index + 1; i < size; i++) {
+          data[i] = data[i+1];
+        }
+      }
+    return null;
+    }
+
+/*
+remove the leftmost element that has the same value as the target string. Shift all elements to the right of that
+index to the left to fill in the gap. Return true if the element was present and removed, false if it was not found.
+*/
+  public boolean remove(String target) {
+    for (int i = 0; i < size; i++) {
+      if (data[i] == target) {
+        data[i] = data[i+1];
+        for (int j = i; j < size ;j++) {
+          data[j] = data[j+1];
+        }
+        break;
+      }
+    }
+    return true;
+  }
+
 
 }
