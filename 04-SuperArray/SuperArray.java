@@ -21,9 +21,13 @@ add the new element s to the end of the SuperArray.
 This method returns True.
 */
   public boolean add(String s) {
-    data[size] = s;
-    size += 1;
-    return true;
+    if (size == data.length) {
+      throw new ArrayIndexOutOfBoundsException("ERROR in add(): " + size + " is either less than 0 or is greater than size()");
+    } else {
+      data[size] = s;
+      size += 1;
+      return true;
+    }
   }
 
 //return a String in the format: "[hi, ok, pf]"
@@ -59,14 +63,12 @@ print an error and return null. out of range for get: index is less than 0,
 or index is size() or greater
 */
   public String get(int index) {
-    if (index < 0 || index > size){
-      System.out.println("error");
-      return null;
+    if (index >= 0 || index <= size){
+      return data[index];
     } else {
-       return data[index];
+      throw new IndexOutOfBoundsException("ERROR in get(): " + index + " is either less than 0 or is greater than size()");
     }
   }
-
 /*
 change the value at index i, and return the original value. For now,
 if the index is not valid, print an error, return null, and do not modify the list.
@@ -84,7 +86,7 @@ out of range for set: index is less than 0, or index is size() or greater
 
 // This constructor makes an empty SuperArray. The array should start with length of initialCapacity .
   public SuperArray(int initialCapacity) {
-    SuperArray another = new SuperArray(initialCapacity);
+    data  = new String[initialCapacity];
   }
 
 /*
@@ -101,6 +103,7 @@ Once you test this method, your add methods must call this before you add to a l
       another.add(a);
     }
   }
+
 
 /*
 return the smallest index where the value in the SuperArray matches the target string.
