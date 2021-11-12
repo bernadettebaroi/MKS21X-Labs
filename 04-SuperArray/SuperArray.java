@@ -9,6 +9,7 @@ This means 10 is the maximum capacity.
 */
   public SuperArray() {
     data = new String[10] ;
+    size = 0;
   }
 
 //get the size of the SuperArray. (NOT capacity)
@@ -21,13 +22,12 @@ add the new element s to the end of the SuperArray.
 This method returns True.
 */
   public boolean add(String s) {
-    if (size == data.length) {
-      throw new ArrayIndexOutOfBoundsException("ERROR in add(): " + size + " is either less than 0 or is greater than size()");
-    } else {
-      data[size] = s;
-      size += 1;
-      return true;
+    if (data.length == size()) {
+      resize();
     }
+    data[size()] = s;
+    size += 1;
+    return true;
   }
 
 //return a String in the format: "[hi, ok, pf]"
@@ -63,30 +63,34 @@ print an error and return null. out of range for get: index is less than 0,
 or index is size() or greater
 */
   public String get(int index) {
-    if (index >= 0 || index <= size){
-      return data[index];
+    if (index < 0 || index > size()){
+      throw new IndexOutOfBoundsException("ERROR: index is either less than 0 or is greater than size()");
     } else {
-      throw new IndexOutOfBoundsException("ERROR in get(): " + index + " is either less than 0 or is greater than size()");
+      return data[index];
     }
   }
+
 /*
 change the value at index i, and return the original value. For now,
 if the index is not valid, print an error, return null, and do not modify the list.
 out of range for set: index is less than 0, or index is size() or greater
 */
   public String set(int index, String element) {
-    if (index < 0 || index > size){
-      System.out.println("error");
-      return null;
+    if (index < 0 || index > size()){
+      throw new IndexOutOfBoundsException("ERROR: index is either less than 0 or is greater than size()");
     } else {
       data[index] = element;
+      return data[index];
     }
-    return data[index];
   }
 
 // This constructor makes an empty SuperArray. The array should start with length of initialCapacity .
   public SuperArray(int initialCapacity) {
-    data  = new String[initialCapacity];
+    if (initialCapacity < 0) {
+      throw new IllegalArgumentException("ERROR: SuperArray() needs a parameter greater than or equal to 0");
+    }
+    data = new String[initialCapacity];
+    size = 0;
   }
 
 /*
@@ -97,20 +101,19 @@ This is a critical method to test thoroughly!!!
 Once you test this method, your add methods must call this before you add to a list that is at capacity.
 */
   private void resize() {
-    SuperArray another = new SuperArray(2*size+1);
-    for (int i = 0; i < another.size(); i++){
-      String a = data[i];
-      another.add(a);
+    String[] another = data;
+    data = new String[size*2+1];
+    for (int i = 0; i < size(); i++){
+      data[i] = another[i];
     }
   }
-
 
 /*
 return the smallest index where the value in the SuperArray matches the target string.
 Return -1 when no value matches.
 */
   public int indexOf(String target) {
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size(); i++) {
       if (data[i] == target) {
         return i;
       }
@@ -124,7 +127,7 @@ Return -1 when no value matches.
 */
   public int lastIndexOf(String target) {
     int ans = -1;
-    for (int i = 0; i < size; i++) {
+    for (int i = 0; i < size(); i++) {
       if (data[i] == target) {
         ans = i;
       }
@@ -138,16 +141,19 @@ shifted to the  right to make room. Print an Error - if the index is out of rang
 Anything index that is negative is out of range, but size() IS a valid index. Greater than size() is out of range.
 */
   public void add(int index, String value ) {
+    if (size() == data.length){
+      resize();
+    }
     if (index < 0 || index > size) {
-      System.out.println("Error");
+      throw new IndexOutOfBoundsException("ERROR: index is either less than 0 or is greater than size()");
     } else {
-      for (int i = size; i > index; i--){
+      for (int i = size(); i > index; i--){
           data[i] = data[i-1];
         }
-      data[index] = value;
-      }
+        data[index] = value;
+        size += 1;
+    }
   }
-
 
 /*
 remove the element at the specified index. Shift all elements to the right of that index to the left to fill in the gap.
@@ -156,32 +162,30 @@ when an error happens, or the value that you removed when the index was valid.
 */
   public String remove(int index) {
     if (index < 0 || index > size) {
-      System.out.println("Error");
-      } else {
-        data[index] = data[index + 1];
-        for (int i = index + 1; i < size; i++) {
-          data[i] = data[i+1];
-        }
-      }
-    return null;
+      throw new IndexOutOfBoundsException("ERROR: index is either less than 0 or is greater than size()");
     }
+    String ans = data[index];
+    data[index] = null;
+    if (size > 1) {
+      for (int i = index; i < size; i++) {
+        data[i] = data[i+1];
+      }
+    }
+    size --;
+    return ans;
+  }
 
 /*
 remove the leftmost element that has the same value as the target string. Shift all elements to the right of that
 index to the left to fill in the gap. Return true if the element was present and removed, false if it was not found.
 */
-  public boolean remove(String target) {
-    for (int i = 0; i < size; i++) {
-      if (data[i] == target) {
-        data[i] = data[i+1];
-        for (int j = i; j < size ;j++) {
-          data[j] = data[j+1];
-        }
-        break;
-      }
-    }
-    return true;
+public boolean remove(String target){
+  if(indexOf(target)>=0){
+      remove(indexOf(target));
+      return true;
+    }else{
+    throw new IllegalArgumentException("ERROR: target not found to be extracted");
   }
-
+}
 
 }

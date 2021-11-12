@@ -37,14 +37,57 @@ public class SuperArrayExceptionTester{
     }
 
     //Test3: set -1
+    testNum++;
+    testName = "set out of bounds -1";
+    list = init();
+    try{
+        list.set(-1, "value");
+        System.out.println(testNum+". FAIL! No exception thrown "+testName);
+    }catch(IndexOutOfBoundsException e){
+      System.out.println(testNum+". PASS "+testName);
+    }
 
     //Test4: set size()
+    testNum++;
+    testName = "set out of bounds size()";
+    list = init();
+    try{
+        list.set(list.size(), "value");
+        System.out.println(testNum+". FAIL! No exception thrown "+testName);
+    }catch(IndexOutOfBoundsException e){
+      System.out.println(testNum+". PASS "+testName);
+    }
 
     //Test5: add(-1,value)
+    testNum++;
+    testName = "add out of bounds -1";
+    list = init();
+    try{
+        list.add(-1, "value");
+        System.out.println(testNum+". FAIL! No exception thrown "+testName);
+    }catch(IndexOutOfBoundsException e){
+      System.out.println(testNum+". PASS "+testName);
+    }
 
     //Test6: add(size()+1,value)
-
+    testNum++;
+    testName = "add out of bounds size()+1";
+    list = init();
+    try{
+        list.add(list.size()+1, "value");
+        System.out.println(testNum+". FAIL! No exception thrown "+testName);
+    }catch(IndexOutOfBoundsException e){
+      System.out.println(testNum+". PASS "+testName);
+    }
     //Test7: constructor(-1 size)
+    testNum++;
+    testName = "constructor out of bounds -1";
+    try{
+        new SuperArray(-1);
+        System.out.println(testNum+". FAIL! No exception thrown "+testName);
+    }catch(IndexOutOfBoundsException e){
+      System.out.println(testNum+". PASS "+testName);
+    }
     //BE CAREFUL! Which exception is expected?
 
 
