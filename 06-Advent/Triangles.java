@@ -20,7 +20,7 @@ public class Triangles{
       System.out.println("Number of valid triangles horizontally: " + ans);
       
       int ans1 = 1;
-      File file1 = new File("data.txt");
+      File file1 = new File("data");
       Scanner input1 = new Scanner(file1);
       ArrayList<Integer>list = new ArrayList<Integer>();
       while (input1.hasNextLine()) {
