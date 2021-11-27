@@ -12,7 +12,7 @@ public class Triangles{
         int ans = 0;
         File file = new File(filename);
         Scanner input = new Scanner(file);
-        while (input.hasNextLine()) {
+        while (input.hasNextInt()) {
           int x = input.nextInt();
           int y = input.nextInt();
           int z = input.nextInt();
@@ -28,7 +28,7 @@ public class Triangles{
         File file1 = new File(filename);
         Scanner input1 = new Scanner(file1);
         ArrayList<Integer>list = new ArrayList<Integer>();
-        while (input1.hasNextLine()) {
+        while (input1.hasNextInt()) {
           list.add(input1.nextInt());
           list.add(input1.nextInt());
           list.add(input1.nextInt());

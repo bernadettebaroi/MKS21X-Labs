@@ -2,6 +2,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Wrapping {
   public static void main (String[] args) {
@@ -59,11 +60,10 @@ public class Wrapping {
   }
 
   public static int feetRibbon(int l, int w, int h) {
-    int side1 = l*w;
-    int side2 = w*h;
-    int side3 = h*l;
     int ans = (l*w*h);
-    ans += 2*l + 2*w;
+    int[] lop = {l, w, h};
+    Arrays.sort(lop);
+    ans += 2*lop[0] + 2*lop[1];
     return ans;
   }
 
