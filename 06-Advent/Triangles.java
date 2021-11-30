@@ -24,7 +24,7 @@ public class Triangles{
         input.close();
 
       } else if (num == 2) {
-        int ans1 = 1;
+        int ans1 = 0;
         File file1 = new File(filename);
         Scanner input1 = new Scanner(file1);
         ArrayList<Integer>list = new ArrayList<Integer>();
