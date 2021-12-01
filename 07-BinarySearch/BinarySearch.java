@@ -18,18 +18,16 @@ public class BinarySearch {
   }
 
   public static int binarySearch(int[]data, int target){
-    int mid = data.length / 2;
     int start = 0;
-    int end = data.length;
-    while (mid > start && mid < end) {
+    int end = data.length -1;
+    while (start <= end) {
+      int mid = (start + end) / 2;
       if (data[mid] == target) {
         return mid;
-      } else if (data[mid] > target) {
-        end = mid;
-        mid = mid / 2;
       } else if (data[mid] < target){
-        start = mid;
-        mid = (end - start) / 2;
+        start = mid + 1;
+      } else if (data[mid] > target) {
+        end = mid - 1;
       }
     }
     return -1;
