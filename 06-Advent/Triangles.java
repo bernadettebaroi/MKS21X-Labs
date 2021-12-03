@@ -20,7 +20,7 @@ public class Triangles{
             ans += 1;
           }
         }
-        System.out.println("Number of valid triangles horizontally: " + ans);
+        System.out.println(ans);
         input.close();
 
       } else if (num == 2) {
@@ -41,7 +41,7 @@ public class Triangles{
             ans1 += 1;
           }
         }
-        System.out.println("Number of valid triangles vertically: " + ans1);
+        System.out.println(ans1);
         input1.close();//releases the file from your program
       }
 

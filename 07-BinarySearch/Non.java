@@ -13,29 +13,25 @@ public class Non {
         File file = new File(filename);
         Scanner input = new Scanner(file);
         int ans = 0;
-        int inp = 0;
         while (input.hasNextLine()) {
           String s = input.nextLine();
-          inp += 1;
           if (isNice(s)) {
             ans += 1;
           }
         }
-        System.out.println(ans + " nice out of the " + inp + " inputs");
+        System.out.println(ans);
         input.close();
       } else if (num == 2) {
         File file1 = new File(filename);
         Scanner input1 = new Scanner(file1);
         int ans1 =0;
-        int inp1 = 0;
         while (input1.hasNextLine()) {
           String s = input1.nextLine();
-          inp1 += 1;
           if (isNice1(s)) {
             ans1 += 1;
           }
         }
-        System.out.println(ans1 + " nice out of the " + inp1 + " inputs");
+        System.out.println(ans1);
         input1.close();
       }
     } catch (FileNotFoundException e) {
