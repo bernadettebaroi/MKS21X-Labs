@@ -18,14 +18,16 @@ public class BinarySearch {
     //Tip: You can use a loop to find if it works on 0,1,2,3,4,5,and 6 in this array!
     Random rd = new Random(); // creating Random object
     int[] arr = new int[10];
-    for (int i = 0; i < arr.length; i++) {
-      arr[i] = rd.nextInt(); // storing random integers in an array
+    for (int i = 0; i < 10; i++){
+      int a = (int)(Math.random()*50 +1);
+      arr[i] = a;
     }
     Arrays.sort(arr);
     System.out.println(Arrays.toString(arr));
-    int a = arr[3];
-    System.out.println(a);
-    System.out.println(binarySearch(arr, a));
+    int a = (int)(Math.random()*10 +1);
+    int b = arr[a -1];
+    System.out.println("Lookin for " + b);
+    System.out.println(b + " is at index " + binarySearch(arr, b));
   }
 
   public static int binarySearch(int[]data, int target){
