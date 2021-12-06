@@ -2,6 +2,7 @@ import java.util.Arrays;
 
 public class Sorts{
   public static void main(String[] args) {
+    /*
     int[] test = {5, 1, 0, -5, 12, 16};
     bubbleSort(test);
     System.out.println(Arrays.toString(test));
@@ -20,12 +21,13 @@ public class Sorts{
     }
     Arrays.sort(randoTester2);
     bubbleSort(randoTester);
-
+    */
+    int[] test = {5, 1, 0, -5, 12, 16};
+    selectionSort(test);
+    System.out.println(Arrays.toString(test));
   }
-  /**Bubble sort of an int array.
-  *Upon completion, the elements of the array will be in increasing order.
-  *@param data  the elements to be sorted.
-  */
+
+
   public static void bubbleSort(int[] data){
     int length = data.length;
     for (int i = 0; i < length; i++) {
@@ -40,7 +42,7 @@ public class Sorts{
   }
 
   public static boolean equality(int[] data, int[] data1) {
-    if (!data.length == data.length1) {
+    if (data.length != data1.length) {
       return false;
     }
     boolean ans = false;
@@ -53,6 +55,20 @@ public class Sorts{
       }
     }
     return ans;
+  }
+
+  public static void selectionSort(int [] ary) {
+      
+  }
+
+  public static int getMin (int[] ary) {
+    int minValue = ary[0];
+    for(int i=1;i<ary.length;i++){
+      if(ary[i] < minValue){
+        minValue = ary[i];
+      }
+    }
+    return minValue;
   }
 
 }
