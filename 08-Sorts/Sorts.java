@@ -3,9 +3,9 @@ import java.util.Arrays;
 public class Sorts{
   public static void main(String[] args) {
     int[] test = {5, 1, 0, -5, 12, 16};
-    bubbleSort(test);
+    insertionSort(test);
     System.out.println(Arrays.toString(test));
-
+/*
     int[] test1 = {0,0,0,0,0,0};
     bubbleSort(test1);
     System.out.println(Arrays.toString(test1));
@@ -35,7 +35,7 @@ public class Sorts{
     }
     Arrays.sort(randoTester);
     bubbleSort(randoTester2);
-    if (equality(randoTester, randoTester2)) {
+    if (Arrays.equals(randoTester, randoTester2)) {
       System.out.println("bubbleSort works");
     }
 
@@ -48,10 +48,10 @@ public class Sorts{
     }
     Arrays.sort(randoTester3);
     selectionSort(randoTester4);
-    if (equality(randoTester3, randoTester4)) {
+    if (Arrays.equals(randoTester3, randoTester4)) {
       System.out.println("selectionSort works");
     }
-
+*/
   }
 
 
@@ -82,20 +82,18 @@ public class Sorts{
     }
   }
 
-  public static boolean equality(int[] data, int[] data1) {
-    if (data.length != data1.length) {
-      return false;
-    }
-    boolean ans = false;
-    for (int i = 0;i < data.length;i++) {
-      if (data[i] == data1[i]) {
-        ans = true;
-      } else {
-        ans = false;
-        break;
+  public static void insertionSort(int[]data){
+    int a = 0;
+    for (int i = 1; i < data.length; i++) {
+      for (int j = i - 1; j >= 0; j--) {
+        if (data[j] <= data[i]) {
+          a = j;
+        }
       }
+      int swap = data[a];
+      data[a] = data[i];
+      data[i] = swap;
     }
-    return ans;
   }
 
 }
