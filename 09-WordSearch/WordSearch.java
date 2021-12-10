@@ -29,12 +29,15 @@ public class WordSearch{
      *separated by newlines.
      */
     public String toString(){
+      String ans = "";
       for (int i = 0; i < data.length;i++) {
         for (int j = 0; j < data[i].length;j++) {
-          System.out.println(data[i][j]);
+          ans += data[i][j];
+          ans += " ";
         }
-        System.out.println("\n");
+        ans += "\n";
       }
+      return ans;
     }
 
 
@@ -50,6 +53,11 @@ public class WordSearch{
      * and the board is NOT modified.
      */
     public boolean addWordHorizontal(String word,int row, int col){
+      int j = 0;
+      for (int i = 0; i < word.length(); i++) {
+        data[row][j] = word.charAt(i);
+        j++;
+      }
       return true;
     }
 
@@ -66,6 +74,35 @@ public class WordSearch{
      *and the board is NOT modified.
      */
     public boolean addWordVertical(String word,int row, int col){
+      int j = row;
+      int i = 0;
+      while (i < word.length() && j < data.length) {
+        data[j][col] = word.charAt(i);
+        i++;
+        j++;
+      }
+      return true;
+    }
+
+    /**Attempts to add a given word to the specified position of the WordGrid.
+     *The word is added from top left towards the bottom right, it must fit on the board,
+     *and must have a corresponding letter to match any letters that it overlaps.
+     *
+     *@param word is any text to be added to the word grid.
+     *@param row is the vertical locaiton of where you want the word to start.
+     *@param col is the horizontal location of where you want the word to start.
+     *@return true when the word is added successfully. When the word doesn't fit,
+     *or there are overlapping letters that do not match, then false is returned
+     *and the board is not modified.
+     */
+    public boolean addWordDiagonal(String word,int row, int col){
+      int a = 0;
+      int b = 0;
+      for (int i = 0; i < word.length(); i++) {
+        data[a][b] = word.charAt(i);
+        a++;
+        b++;
+      }
       return true;
     }
 }
