@@ -105,4 +105,59 @@ public class WordSearch{
       }
       return true;
     }
+
+    public boolean addWord(int row, int col, String word, int rowInc, int colInc){
+      if (rowInc == 0) {
+        if (colInc == 1) {
+          addWordVertical(word, row, col);
+        } else if( colInc == -1){
+          int b = 0;
+          while(row >= 0 && b > 0) {
+            data[row][col] = word.charAt(b);
+            row -= 1;
+            b++;
+          }
+        }
+
+      } else if (rowInc == 1) {
+        if (colInc == 0) {
+          addWordHorizontal(word, row, col);
+        } else if( colInc == 1){
+          addWordDiagonal(word, row, col);
+        } else if (colInc == -1) {
+          int b = 0;
+          while(col >= 0 && b > 0) {
+            data[row][col] = word.charAt(b);
+            col += 1;
+            row -= 1;
+            b++;
+          }
+        }
+        //
+
+      } else if (rowInc == -1 ) {
+        if (colInc == 0) {
+          int b = 0;
+          while(col >= 0 && b < word.length()) {
+            data[row][col] = word.charAt(b);
+            col --;
+            b++;
+          }
+        } else if( colInc == 1){
+          int b = 0;
+          while(col >= 0 && b < word.length()) {
+            data[row][col] = word.charAt(b);
+            col--;
+            row++;
+            b++;
+          }
+        } else if (colInc == -1) {
+          addWordHorizontal(word, row, col);
+        }
+      }
+      return true;
+    }
+
+
+
 }
