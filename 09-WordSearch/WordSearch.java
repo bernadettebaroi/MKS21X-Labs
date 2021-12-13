@@ -1,5 +1,14 @@
+import java.util.Random;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.io.FileNotFoundException;
+import java.io.File;
+
 public class WordSearch{
     private char[][]data;
+    private int seed;
+    private Random randgen;
+    private ArrayList<String> wordsAdded;
 
     /**Initialize the grid to the size specified
      *and fill all of the positions with '_'
@@ -53,10 +62,15 @@ public class WordSearch{
      * and the board is NOT modified.
      */
     public boolean addWordHorizontal(String word,int row, int col){
-      int j = 0;
-      for (int i = 0; i < word.length(); i++) {
-        data[row][j] = word.charAt(i);
-        j++;
+      col--;
+      row--;
+      for (int i = 0; i < word.length();i++) {
+        if (col < data[row].length) {
+          if (data[row][col] == '_' || data[row][col] == word.charAt(i)) {
+            data[row][col] = word.charAt(i);
+            col++;
+          }
+        }
       }
       return true;
     }
@@ -74,12 +88,15 @@ public class WordSearch{
      *and the board is NOT modified.
      */
     public boolean addWordVertical(String word,int row, int col){
-      int j = row;
-      int i = 0;
-      while (i < word.length() && j < data.length) {
-        data[j][col] = word.charAt(i);
-        i++;
-        j++;
+      col--;
+      row--;
+      for (int i = 0; i < word.length();i++) {
+        if (row < data.length && data[row][col] == '_' || data[row][col] == word.charAt(i)) {
+          if (data[row][col] == '_' || data[row][col] == word.charAt(i)) {
+            data[row][col] = word.charAt(i);
+            row++;
+          }
+        }
       }
       return true;
     }
@@ -96,68 +113,101 @@ public class WordSearch{
      *and the board is not modified.
      */
     public boolean addWordDiagonal(String word,int row, int col){
-      int a = 0;
-      int b = 0;
+      col--;
+      row--;
       for (int i = 0; i < word.length(); i++) {
-        data[a][b] = word.charAt(i);
-        a++;
-        b++;
+        if (row < data.length && col < data[row].length) {
+          if (data[row][col] == '_' || data[row][col] == word.charAt(i)) {
+            data[row][col] = word.charAt(i);
+            row++;
+            col++;
+          } else {
+            break;
+          }
+        }
       }
       return true;
     }
 
+
     public boolean addWord(int row, int col, String word, int rowInc, int colInc){
       if (rowInc == 0) {
         if (colInc == 1) {
-          addWordVertical(word, row, col);
-        } else if( colInc == -1){
-          int b = 0;
-          while(row >= 0 && b > 0) {
-            data[row][col] = word.charAt(b);
-            row -= 1;
-            b++;
+          addWordHorizontal(word, row, col);
+          } else if( colInc == -1){
+            col--;
+            row--;
+            for (int i = 0; i < word.length(); i++) {
+              if (col >= 0 && col <= data[row].length) {
+                if (data[row][col] == '_' || data[row][col] == word.charAt(i)) {
+                  data[row][col] = word.charAt(i);
+                  col --;
+                }
+              }
+            }
           }
-        }
-
       } else if (rowInc == 1) {
         if (colInc == 0) {
           addWordHorizontal(word, row, col);
         } else if( colInc == 1){
           addWordDiagonal(word, row, col);
         } else if (colInc == -1) {
-          int b = 0;
-          while(col >= 0 && b > 0) {
-            data[row][col] = word.charAt(b);
-            col += 1;
-            row -= 1;
-            b++;
+          col--;
+          row--;
+          for (int i = 0; i < word.length();i++) {
+            if (col >= 0 && row < data.length) {
+              if (data[row][col] == '_' || data[row][col] == word.charAt(i)) {
+                data[row][col] = word.charAt(i);
+                row++;
+                col--;
+              }
+            }
           }
         }
-        //
-
       } else if (rowInc == -1 ) {
         if (colInc == 0) {
-          int b = 0;
-          while(col >= 0 && b < word.length()) {
-            data[row][col] = word.charAt(b);
-            col --;
-            b++;
+          col--;
+          row--;
+          for (int i = 0; i < word.length();i++) {
+            if (row >= 0) {
+              if (data[row][col] == '_' || data[row][col] == word.charAt(i)) {
+                data[row][col] = word.charAt(i);
+                row--;
+              }
+            }
           }
         } else if( colInc == 1){
-          int b = 0;
-          while(col >= 0 && b < word.length()) {
-            data[row][col] = word.charAt(b);
-            col--;
-            row++;
-            b++;
+          col--;
+          row--;
+          for (int i = 0; i < word.length();i++) {
+            if (col < data[row].length && row >= 0) {
+              if (data[row][col] == '_' || data[row][col] == word.charAt(i)) {
+                data[row][col] = word.charAt(i);
+                row--;
+                col++;
+              }
+            }
           }
         } else if (colInc == -1) {
-          addWordHorizontal(word, row, col);
+          col--;
+          row--;
+          for (int i = 0; i < word.length();i++) {
+            if (col < data[row].length && row >= 0) {
+              if (data[row][col] == '_' || data[row][col] == word.charAt(i)) {
+                data[row][col] = word.charAt(i);
+                row--;
+                col--;
+              }
+            }
+          }
         }
       }
       return true;
     }
 
+    public boolean addAllWord(String filename) {
+      return true;
+    }
 
 
 }
