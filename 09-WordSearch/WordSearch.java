@@ -91,7 +91,7 @@ public class WordSearch{
       col--;
       row--;
       for (int i = 0; i < word.length();i++) {
-        if (row < data.length && data[row][col] == '_' || data[row][col] == word.charAt(i)) {
+        if (row < data.length) {
           if (data[row][col] == '_' || data[row][col] == word.charAt(i)) {
             data[row][col] = word.charAt(i);
             row++;
