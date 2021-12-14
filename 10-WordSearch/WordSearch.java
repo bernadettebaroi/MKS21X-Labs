@@ -11,23 +11,22 @@ public class WordSearch{
     int col = Integer.parseInt(args[1]);
     String filename = args[2];
     int mode = Integer.parseInt(args[3]);
-    if (mode == 0){
-      if (args[4] != null) {
-        int seed = Integer.parseInt(args[4]);
+    try {
+      int seed = Integer.parseInt(args[4]);
+      if (mode == 0){
         WordSearch newGame = new WordSearch(row, col, filename, seed);
         newGame.fillInRandomLetters();
         System.out.println(newGame);
-      } else {
+      } else if(mode == 1) {
+        WordSearch newGame = new WordSearch(row, col, filename, seed);
+        System.out.println(newGame);
+      }
+    } catch (Exception e) {
+      if (mode == 0){
         WordSearch newGame = new WordSearch(row, col, filename);
         newGame.fillInRandomLetters();
         System.out.println(newGame);
-      }
-    } else if (mode == 1) {
-      if (args[4] != null) {
-        int seed = Integer.parseInt(args[4]);
-        WordSearch newGame = new WordSearch(row, col, filename, seed);
-        System.out.println(newGame);
-      } else {
+      } else if(mode == 1) {
         WordSearch newGame = new WordSearch(row, col, filename);
         System.out.println(newGame);
       }
@@ -54,7 +53,7 @@ public class WordSearch{
       for (int i = 0; i < grid.length;i++) {
         for (int j = 0; j < grid[i].length;j++) {
           if (grid[i][j] == '_') {
-              char letter = (char)(rng.nextInt(25)+65);
+              char letter = (char)(rng.nextInt(26)+65);
               grid[i][j] = letter;
           }
         }
