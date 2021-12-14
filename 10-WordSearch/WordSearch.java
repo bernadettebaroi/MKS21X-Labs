@@ -6,12 +6,47 @@ public class WordSearch{
   private Random rng;
   private int seed;
 
+  public static void main(String[] args) {
+    int row = Integer.parseInt(args[0]);
+    int col = Integer.parseInt(args[1]);
+    String filename = args[2];
+    int mode = Integer.parseInt(args[3]);
+    if (mode == 0){
+      WordSearch newGame = new WordSearch(row, col, filename);
+      newGame.fillInRandomLetters();
+      System.out.println(newGame);
+    } else if (mode == 1) {
+      WordSearch newGame = new WordSearch(row, col, filename);
+      System.out.println(newGame);
+    }
+  }
+
   //assume a rectangular grid
   private void addAllWords(String filename){
     ArrayList<String> wordsToAdd = loadWordsFromFile(filename);
-    //You are writing this
-
+    for (int j = 0; j < wordsToAdd.size();j++) {
+      int i = rng.nextInt(wordsToAdd.size());
+      String word = wordsToAdd.get(i);
+      int row = rng.nextInt(grid.length);
+      int col = rng.nextInt(grid[row].length);
+      int dr = rng.nextInt(3)-1;
+      int dc = rng.nextInt(3)-1;
+      if (addWord(word, row, col, dr, dc) == true) {
+        wordsToAdd.remove(i);
+      }
+    }
   }
+
+  private void fillInRandomLetters() {
+      for (int i = 0; i < grid.length;i++) {
+        for (int j = 0; j < grid[i].length;j++) {
+          if (grid[i][j] == '_') {
+              char letter = (char)(rng.nextInt(58)+65);
+              grid[i][j] = letter;
+          }
+        }
+      }
+    }
 
   public WordSearch(int rows,int cols, String fileName){
     rng = new Random();
