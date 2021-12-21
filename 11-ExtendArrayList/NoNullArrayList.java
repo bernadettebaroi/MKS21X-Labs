@@ -27,7 +27,7 @@ public class NoNullArrayList<T> extends ArrayList<T> {
   }
 
   public void add(int index, T element) {
-    if (super.get(index) == null || element == null) {
+    if (element == null) {
       throw new IllegalArgumentException ("Error Message");
     } else {
       super.add(index, element);
@@ -42,6 +42,4 @@ public class NoNullArrayList<T> extends ArrayList<T> {
       return true;
     }
   }
-
-
 }
