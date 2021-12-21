@@ -12,7 +12,7 @@ public class NoNullArrayList<T> extends ArrayList<T> {
 
   public T get(int index) {
     if (super.get(index) == null) {
-      throw new IllegalArgumentException ("Error Message");
+      throw new IllegalArgumentException ("Error Message: No Null Exception");
     } else {
       return super.get(index);
     }
@@ -20,7 +20,7 @@ public class NoNullArrayList<T> extends ArrayList<T> {
 
   public T set(int index, T element) {
     if (element == null) {
-      throw new IllegalArgumentException ("Error Message");
+      throw new IllegalArgumentException ("Error Message: No Null Exception");
     } else {
       return super.set(index, element);
     }
@@ -28,7 +28,7 @@ public class NoNullArrayList<T> extends ArrayList<T> {
 
   public void add(int index, T element) {
     if (element == null) {
-      throw new IllegalArgumentException ("Error Message");
+      throw new IllegalArgumentException ("Error Message: No Null Exception");
     } else {
       super.add(index, element);
     }

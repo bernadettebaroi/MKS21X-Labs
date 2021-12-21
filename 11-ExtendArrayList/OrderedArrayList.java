@@ -8,6 +8,9 @@ public class OrderedArrayList<T extends Comparable<T>> extends NoNullArrayList<T
   }
 
   private int whereToPlace(T value){
+    if (value == null) {
+      throw new IllegalArgumentException ("Error Message: No Null Exception");
+    }
     int i = 0;
     if (size() == 0) {
       return 0;
@@ -20,6 +23,11 @@ public class OrderedArrayList<T extends Comparable<T>> extends NoNullArrayList<T
       }
     }
     return i;
+  }
+
+  public boolean add(T element) {
+    super.add(whereToPlace(element), element);
+    return true;
   }
 
   //will still add the element, but it will ignore the index.
