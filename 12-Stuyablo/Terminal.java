@@ -1,6 +1,5 @@
 public class Terminal {
   public static void main(String[] args) {
-    Text.reset();
     for (int j = 80; j > 0; j--) {
       Text.hideCursor();
       Text.go(30,j);
@@ -25,7 +24,6 @@ public class Terminal {
       System.out.println(Text.colorize(" ",Text.BLUE+Text.BACKGROUND));
       Text.showCursor();
     }
-    Text.reset();
     int[] intArray = new int[4];
     for (int i = 0; i < 4; i++) {
       intArray[i] = (int)(Math.random()*99)+1 ;
@@ -42,9 +40,10 @@ public class Terminal {
     } else {
       System.out.println(Text.colorize("" + intArray[i],Text.WHITE));
     }
-    Text.reset();
     Text.showCursor();
     k += 25;
   }
+  Text.go(31,1);
+  Text.reset();
 }
 }
