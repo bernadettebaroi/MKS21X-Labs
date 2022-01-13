@@ -8,10 +8,6 @@ public class Game {
     Text.go(31,1);
     System.out.println(Text.colorize(">", Text.WHITE));
     Text.showCursor();
-
-    String file = args[1];
-    Scanner input = new Scanner(file);
-
   }
 
   public static void number() {
@@ -34,7 +30,7 @@ public class Game {
   }
 
   public static void border() {
-    Text.reset();
+    Text.clear();
     for (int j = 1; j < 81; j++) {
       Text.go(1,j);
       System.out.print(Text.colorize(" ",BORDERS));
