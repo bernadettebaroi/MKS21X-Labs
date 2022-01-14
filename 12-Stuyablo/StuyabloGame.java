@@ -15,26 +15,21 @@ public class StuyabloGame{
     int k = 2;
     for (int i = 0; i < party.size(); i ++) {
       Text.go(2,k);
-      if (party[i] < 25) {
-        System.out.print(Text.colorize("" + party[i],Text.RED));
-      } else if (party[i] > 75) {
-        System.out.print(Text.colorize("" + party[i],Text.GREEN));
-      } else {
-        System.out.print(Text.colorize("" + party[i],Text.WHITE));
-      }
+      System.out.print(Text.colorize("" + party.get(i),Text.RED));
       k += 25;
     }
-    int k = 2;
+    int l = 2;
     for (int i = 0; i < party.size(); i ++) {
-      Text.go(3,k);
-      if (party[i] < 25) {
-        System.out.print(Text.colorize("" + party[i].getHP(),Text.RED));
-      } else if (party[i] > 75) {
-        System.out.print(Text.colorize("" + party[i].getHP(),Text.GREEN));
+      Text.go(3,l);
+      int b = party.get(i).getrageMax() * .25 
+      if (party.get(i) < 25) {
+        System.out.print(Text.colorize("" + party.get(i).getHP(),Text.RED));
+      } else if (party.get(i) > 75) {
+        System.out.print(Text.colorize("" + party.get(i).getHP(),Text.GREEN));
       } else {
-        System.out.print(Text.colorize("" + party[i].getHP(),Text.WHITE));
+        System.out.print(Text.colorize("" + party.get(i).getHP(),Text.WHITE));
       }
-      k += 25;
+      l += 25;
     }
   }
 
@@ -50,26 +45,26 @@ public class StuyabloGame{
     Text.clear();
     for (int j = 1; j < 81; j++) {
       Text.go(1,j);
-      System.out.print(Text.colorize(" ",BORDERS));
+      System.out.print(Text.colorize(" ",BORDER_COLOR, BORDER_BACKGROUND));
     }
     for (int j = 1; j < 31; j++) {
       Text.go(j,1);
-      System.out.print(Text.colorize(" ",BORDERS));
+      System.out.print(Text.colorize(" ",BORDER_COLOR, BORDER_BACKGROUND));
       Text.go(j,80);
-      System.out.print(Text.colorize(" ",BORDERS));
+      System.out.print(Text.colorize(" ",BORDER_COLOR, BORDER_BACKGROUND));
     }
     for (int j = 1; j < 81; j++) {
       Text.go(30,j);
-      System.out.print(Text.colorize(" ",BORDERS));
+      System.out.print(Text.colorize(" ",BORDER_COLOR, BORDER_BACKGROUND));
     }
     Text.go(1,1);
-    System.out.print(Text.colorize("*",BORDERS));
+    System.out.print(Text.colorize("*",BORDER_COLOR, BORDER_BACKGROUND));
     Text.go(1,80);
-    System.out.print(Text.colorize("*",BORDERS));
+    System.out.print(Text.colorize("*",BORDER_COLOR, BORDER_BACKGROUND));
     Text.go(30,1);
-    System.out.print(Text.colorize("*",BORDERS));
+    System.out.print(Text.colorize("*",BORDER_COLOR, BORDER_BACKGROUND));
     Text.go(30,80);
-    System.out.print(Text.colorize("*",BORDERS));
+    System.out.print(Text.colorize("*",BORDER_COLOR, BORDER_BACKGROUND));
   }
 
 
@@ -113,10 +108,10 @@ public class StuyabloGame{
       if(partyTurn){
         //Process user input:
         if(input.equals("attack")){
-          party[whichPlayer].attack(enemies[0]);
+          party.get(whichPlayer).attack(enemies.get(0));
         }
         else if(input.equals("special")){
-          party[whichPlayer].specialAttack(enemies[0]);
+          party.get(whichPlayer).specialAttack(enemies.get(0));
         }
         whichPlayer++;
 
@@ -133,7 +128,8 @@ public class StuyabloGame{
         //this block ignores user input!
         //display enemy attack except on turn 0.
         if(turn > 0){
-          (int)(Math.random()*2)+1 ;
+          int x = (int)(Math.random()*2)+1 ;
+          enemies.get(1).attack(party.get(x));
 
           //Enemy action choices go here!
         }

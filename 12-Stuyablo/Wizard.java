@@ -1,54 +1,62 @@
 public class Wizard extends Adventurer {
-  private int rage;
+  private int mana;
   private String warcry;
+  private int manaMax;
 
   public Wizard(){
      this("Albus");
+     manaMax = 40;
   }
 
   public Wizard(String name){
      this(name,"abracadabra", 30);
+     manaMax = 40;
   }
 
-  public Wizard(String name, String warcry, int rage){
+  public Wizard(String name, String warcry, int mana){
     super(name,30+(int)(Math.random()*10));
     setWarcry(warcry);
-    setRage(rage);
+    setMana(mana);
+    manaMax = mana;
   }
 
   //wizard methods
 
-  public void attack(Damageable other){
+  public String attack(Damageable other){
       int damage = (int)(Math.random()*10)+1;
       other.applyDamage(damage);
       setRage(getRage() + 1);
-      System.out.println(this +
+      return(this +
           " attacked " + other + " for " +
           damage + " damage!");
   }
 
-  public void specialAttack(Damageable other){
+  public String specialAttack(Damageable other){
      if(getRage() >= 10){
           int damage = (int)(Math.random()*20)+1;
           other.applyDamage(damage);
-          System.out.println(this + " unleashes his fury upon "
+          return(this + " unleashes his fury upon "
            + other + " for " + damage + " damage! "+warcry);
           setRage(getRage() - 10);
     }else{
-        System.out.println("Not enough rage! ");
+        return ("Not enough rage! ");
         attack(other);
     }
   }
 
   //get methods
-
-  public int getRage(){
-     return rage;
+  public String getSpecialName() {
+    return ("Mana");
   }
-
+  public int getSpecial() {
+    return mana;
+  }
+  public int getSpecialMax() {
+    return manaMax;
+  }
   //set methods
-  public void setRage(int r){
-     this.rage = r;
+  public void setMana(int r){
+     this.mana = r;
   }
 
   public void setWarcry(String warcry){
