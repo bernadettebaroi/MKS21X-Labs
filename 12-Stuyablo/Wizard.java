@@ -14,7 +14,7 @@ public class Wizard extends Adventurer {
   }
 
   public Wizard(String name, String warcry, int mana){
-    super(name,30+(int)(Math.random()*10));
+    super(name,100+(int)(Math.random()*10));
     setWarcry(warcry);
     setMana(mana);
     manaMax = mana;
@@ -33,7 +33,7 @@ public class Wizard extends Adventurer {
 
   public String specialAttack(Damageable other){
     String ans = "";
-     if(getSpecial() >= 10){
+     if(getSpecial() >= 20){
           int damage = (int)(Math.random()*20)+1;
           other.applyDamage(damage);
           ans = (this + " unleashes his fury upon "

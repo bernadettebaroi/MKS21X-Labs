@@ -78,15 +78,15 @@ public class StuyabloGame{
     //Things to attack:
     //Make an ArrayList of Adventurers and add 1 enemy to it.
     ArrayList<Adventurer>enemies = new ArrayList<>();
-    Adventurer a = new Wizard("Voldamor","Magiccc",100);
+    Adventurer a = new Wizard("Voldamor","Magiccc",19);
     enemies.add(a);
 
     //Adventurers you control:
     //Make an ArrayList of Adventurers and add 3 Adventurers to it.
     ArrayList<Adventurer> party = new ArrayList<>();
-    Adventurer b = new Warrior("Conan","AAARRHHH!",20);
-    Adventurer c = new Wizard("Harry","AbraCaDabra!",30);
-    Adventurer d = new Warrior("Homer","Swordsss!",11);
+    Adventurer b = new Warrior("Conan","AAARRHHH!",5);
+    Adventurer c = new Wizard("Harry","AbraCaDabra!",12);
+    Adventurer d = new Warrior("Homer","Swordsss!",9);
     party.add(b);
     party.add(c);
     party.add(d);
