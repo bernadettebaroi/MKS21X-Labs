@@ -25,23 +25,25 @@ public class Wizard extends Adventurer {
   public String attack(Damageable other){
       int damage = (int)(Math.random()*10)+1;
       other.applyDamage(damage);
-      setRage(getRage() + 1);
+      setMana(getSpecial() + 1);
       return(this +
           " attacked " + other + " for " +
           damage + " damage!");
   }
 
   public String specialAttack(Damageable other){
-     if(getRage() >= 10){
+    String ans = "";
+     if(getSpecial() >= 10){
           int damage = (int)(Math.random()*20)+1;
           other.applyDamage(damage);
-          return(this + " unleashes his fury upon "
+          ans = (this + " unleashes his fury upon "
            + other + " for " + damage + " damage! "+warcry);
-          setRage(getRage() - 10);
+          setMana(getSpecial() - 10);
     }else{
-        return ("Not enough rage! ");
+        ans = "Not enough rage! ";
         attack(other);
     }
+    return ans;
   }
 
   //get methods

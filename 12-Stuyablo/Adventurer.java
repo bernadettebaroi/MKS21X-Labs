@@ -15,15 +15,18 @@ public abstract class Adventurer implements Damageable{
 
     public Adventurer(){
   	   this("Lester");
+       maxHP = 10;
     }
 
     public Adventurer(String name){
   	   this(name, 10);
+       maxHP = 10;
     }
 
     public Adventurer(String name, int hp){
        this.name = name;
        this.HP = hp;
+       maxHP = hp;
     }
 
     //toString method
@@ -56,7 +59,7 @@ public abstract class Adventurer implements Damageable{
     public int getmaxHP(){
       return maxHP;
     }
-    
+
     public void setmaxHP(int newMax){
       maxHP = newMax;
     }

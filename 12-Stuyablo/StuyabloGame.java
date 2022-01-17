@@ -15,23 +15,31 @@ public class StuyabloGame{
     int k = 2;
     for (int i = 0; i < party.size(); i ++) {
       Text.go(2,k);
-      System.out.print(Text.colorize("" + party.get(i),Text.RED));
+      System.out.print(Text.colorize("" + party.get(i),Text.WHITE));
       k += 25;
     }
     int l = 2;
     for (int i = 0; i < party.size(); i ++) {
       Text.go(3,l);
-      int b = party.get(i).getrageMax() * .25 
-      if (party.get(i) < 25) {
-        System.out.print(Text.colorize("" + party.get(i).getHP(),Text.RED));
-      } else if (party.get(i) > 75) {
-        System.out.print(Text.colorize("" + party.get(i).getHP(),Text.GREEN));
-      } else {
-        System.out.print(Text.colorize("" + party.get(i).getHP(),Text.WHITE));
+      int b = party.get(i).getSpecialMax() * (1/4);
+      String word = "" + party.get(i).getSpecialName() + ": " + party.get(i).getSpecial() + "/" + party.get(i).getSpecialMax();
+      if (party.get(i).getSpecial() <= b) {
+        System.out.print(Text.colorize(word,Text.RED));
+      } else if (party.get(i).getSpecial() >= b) {
+        System.out.print(Text.colorize(word,Text.GREEN));
+      }
+      Text.go(4,l);
+      int a = party.get(i).getmaxHP() * (1/4);
+      word = "HP: " + party.get(i).getHP() + "/" + party.get(i).getmaxHP();
+      if (party.get(i).getHP() <= a) {
+        System.out.print(Text.colorize(word,Text.RED));
+      } else if (party.get(i).getHP() >= a) {
+        System.out.print(Text.colorize(word,Text.GREEN));
       }
       l += 25;
     }
   }
+
 
   //Display a line of text starting at column 2 of the specified row.
   public static void drawText(String s,int startRow){
@@ -45,26 +53,18 @@ public class StuyabloGame{
     Text.clear();
     for (int j = 1; j < 81; j++) {
       Text.go(1,j);
-      System.out.print(Text.colorize(" ",BORDER_COLOR, BORDER_BACKGROUND));
+      System.out.print(Text.colorize("*",BORDER_COLOR, BORDER_BACKGROUND));
     }
     for (int j = 1; j < 31; j++) {
       Text.go(j,1);
-      System.out.print(Text.colorize(" ",BORDER_COLOR, BORDER_BACKGROUND));
+      System.out.print(Text.colorize("*",BORDER_COLOR, BORDER_BACKGROUND));
       Text.go(j,80);
-      System.out.print(Text.colorize(" ",BORDER_COLOR, BORDER_BACKGROUND));
+      System.out.print(Text.colorize("*",BORDER_COLOR, BORDER_BACKGROUND));
     }
     for (int j = 1; j < 81; j++) {
       Text.go(30,j);
-      System.out.print(Text.colorize(" ",BORDER_COLOR, BORDER_BACKGROUND));
+      System.out.print(Text.colorize("*",BORDER_COLOR, BORDER_BACKGROUND));
     }
-    Text.go(1,1);
-    System.out.print(Text.colorize("*",BORDER_COLOR, BORDER_BACKGROUND));
-    Text.go(1,80);
-    System.out.print(Text.colorize("*",BORDER_COLOR, BORDER_BACKGROUND));
-    Text.go(30,1);
-    System.out.print(Text.colorize("*",BORDER_COLOR, BORDER_BACKGROUND));
-    Text.go(30,80);
-    System.out.print(Text.colorize("*",BORDER_COLOR, BORDER_BACKGROUND));
   }
 
 
@@ -78,15 +78,15 @@ public class StuyabloGame{
     //Things to attack:
     //Make an ArrayList of Adventurers and add 1 enemy to it.
     ArrayList<Adventurer>enemies = new ArrayList<>();
-    Adventurer a = new Wizard("Conan","Magiccc",20);
+    Adventurer a = new Wizard("Voldamor","Magiccc",100);
     enemies.add(a);
 
     //Adventurers you control:
     //Make an ArrayList of Adventurers and add 3 Adventurers to it.
     ArrayList<Adventurer> party = new ArrayList<>();
-    Adventurer b = new Warrior("Conan","Aaaaaaaar!",20);
-    Adventurer c = new Warrior("Homer","Donuts?",0);
-    Adventurer d = new Warrior("Homer","Swordsss",11);
+    Adventurer b = new Warrior("Conan","AAARRHHH!",20);
+    Adventurer c = new Wizard("Harry","AbraCaDabra!",30);
+    Adventurer d = new Warrior("Homer","Swordsss!",11);
     party.add(b);
     party.add(c);
     party.add(d);
