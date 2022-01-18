@@ -19,9 +19,9 @@ public class StuyabloGame{
 
       Text.go(startRow+1,l);
       String word = "" + party.get(i).getSpecialName() + ": " + party.get(i).getSpecial() + "/" + party.get(i).getSpecialMax();
-      if (party.get(i).getSpecial() / party.get(i).getSpecialMax() * 100 < 25) {
+      if (party.get(i).getSpecial() * 100 / party.get(i).getSpecialMax() <= 25) {
         System.out.print(Text.colorize(word,Text.RED));
-      } else if (party.get(i).getSpecial() / party.get(i).getSpecialMax() * 100 > 75) {
+      } else if (party.get(i).getSpecial() * 100 / party.get(i).getSpecialMax() >= 75) {
         System.out.print(Text.colorize(word,Text.GREEN));
       } else {
         System.out.print(Text.colorize(word,Text.YELLOW));
@@ -29,9 +29,9 @@ public class StuyabloGame{
 
       Text.go(startRow+2,l);
       word = "HP: " + party.get(i).getHP() + "/" + party.get(i).getmaxHP();
-      if (party.get(i).getHP() / party.get(i).getmaxHP() * 100 < 25) {
+      if (party.get(i).getHP() * 100 / party.get(i).getmaxHP() <= 25) {
         System.out.print(Text.colorize(word,Text.RED));
-      } else if (party.get(i).getHP() / party.get(i).getmaxHP() * 100 > 75) {
+      } else if (party.get(i).getHP() * 100 / party.get(i).getmaxHP() >= 75) {
         System.out.print(Text.colorize(word,Text.GREEN));
       } else {
         System.out.print(Text.colorize(word,Text.YELLOW));
@@ -136,7 +136,7 @@ public class StuyabloGame{
         if(turn > 0){
           int x = (int)(Math.random()*3);
           int change = party.get(x).getHP();
-          enemies.get(0).attack(party.get(x));
+          enemies.get(0).specialAttack(party.get(x));
           change = change - party.get(x).getHP();
           drawText(""+ enemies.get(0)+ " attacked " + party.get(x) + " for " + change + " damage.",HEIGHT/2 -1);
 
