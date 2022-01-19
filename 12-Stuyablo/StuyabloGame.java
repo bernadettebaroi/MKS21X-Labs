@@ -19,13 +19,7 @@ public class StuyabloGame{
 
       Text.go(startRow+1,l);
       String word = "" + party.get(i).getSpecialName() + ": " + party.get(i).getSpecial() + "/" + party.get(i).getSpecialMax();
-      if (party.get(i).getSpecial() * 100 / party.get(i).getSpecialMax() <= 25) {
-        System.out.print(Text.colorize(word,Text.RED));
-      } else if (party.get(i).getSpecial() * 100 / party.get(i).getSpecialMax() >= 75) {
-        System.out.print(Text.colorize(word,Text.GREEN));
-      } else {
-        System.out.print(Text.colorize(word,Text.YELLOW));
-      }
+      System.out.print(Text.colorize(word,Text.WHITE));
 
       Text.go(startRow+2,l);
       word = "HP: " + party.get(i).getHP() + "/" + party.get(i).getmaxHP();
