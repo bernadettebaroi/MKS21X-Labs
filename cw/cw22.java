@@ -11,8 +11,9 @@ public class cw22 {
   public static void makeWord(int a, String ans) {
     if (a > 0) {
       makeWord(a-1, ans);
+      ans += Character.toString('a' + a);
     } else {
-      ans += 'a' + a;
+      ans += Character.toString('a' + a);
     }
   }
 
